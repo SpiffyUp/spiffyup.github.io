@@ -1,0 +1,100 @@
+#  STEP 1: Include your HTML/content in the below container
+
+```
+<div id="spUpsellContent">
+
+    <!--ADD YOUR UPSELL HTML CONTENT HERE-->
+    <div class="column small-12 text-center">
+        <h1 id="">Buy This Too!</h1>
+        <div class="flex">
+            <!--video embed here - dont set to autoplay... it's really annoying, try and see-->
+            <iframe width="960" height="540" src="https://www.youtube.com/embed/PM9vnEWmA1c" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+    <!--END YOUR UPSELL HTML CONTENT -->
+
+</div>
+```
+
+#  STEP 2: Add required CSS and adjust as you see fit
+
+```
+<style>
+    /*Structure*/
+    #spUpsellContent{
+        display:none;
+        font-size:1.25em;
+    }
+    #spiffyUpsell{
+        display:none;
+        background:#fff;
+        position:fixed;
+        left:0;
+        right:0;
+        top:0;
+        bottom:0;
+        z-index:99999999;
+        overflow-y:scroll;
+    }
+    .spUpsellButtons{
+        margin-top:25px;
+        margin-bottom:50px;
+        font-size:1.25em;
+    }
+    .sp-acceptupsell{
+        clear:both;
+    }
+    .sp-nothanks{
+        display:block;
+    }
+    .spUpsellNotice{
+        font-size:16px;
+    }
+
+    /*Content*/
+    #spUpsellContent h1{
+        font-size:3em;
+        padding: 15px 0 20px 0;
+    }
+
+
+    /*Util*/
+    .flex {
+        position: relative;
+        padding-bottom: 53%; /* proportion value to aspect ratio 16:9 (9 / 16 = 0.5625 or 56.25% - 30px) */
+        padding-top: 30px;
+        height: 0;
+        overflow: hidden;
+    }
+
+    .flex iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .spDisableScroll{
+        overflow:hidden !important;
+    }
+</style>
+```
+
+#  STEP 3: Include the JavaScript and initialize the upsell plugin 
+
+```
+<script src="https://spiffyup.github.io/snippet-upsell.js"></script>
+<script>
+    // jQuery Ready
+    jQuery(document).ready(function(){
+
+        // Initialize upsell and set any settings - these show the defaults
+        jQuery(document).upsells({
+            buttonText: "Yes, Add to Order for {upsell_cost}!", // optional - sets the upsell button text
+            noThanksText: "No thanks! Continue without adding to order", // optional - sets the "no thanks" link text
+            noticeText: "<strong>Order Not Yet Complete!</strong> See below to finish your order" // optional - sets the text in the notice at the top of the upsell page
+        });
+
+    });
+</script>
+```
