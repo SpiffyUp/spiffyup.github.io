@@ -83,7 +83,7 @@
 #  STEP 3: Include the JavaScript and initialize the upsell plugin 
 
 ```
-<script src="https://spiffyup.github.io/snippet-upsell.js"></script>
+<script src="https://spiffyup.github.io/snippet-upsell_min.js"></script>
 <script>
     // jQuery Ready
     jQuery(document).ready(function(){
