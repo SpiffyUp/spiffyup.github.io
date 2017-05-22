@@ -27,13 +27,13 @@
     }
     #spiffyUpsell{
         display:none;
-        background:#fff;
+        background:#f7fafb;
         position:fixed;
         left:0;
         right:0;
         top:0;
         bottom:0;
-        z-index:99999999;
+        z-index:9999999;
         overflow-y:scroll;
     }
     .spUpsellButtons{
@@ -41,11 +41,24 @@
         margin-bottom:50px;
         font-size:1.25em;
     }
+
+    /*This is the button style*/
     .sp-acceptupsell{
         clear:both;
+        font-family: 'Lato', 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+        border-radius: 2px;
+        background-color: #84c424;
+        font-size: 1rem !important;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 1.25rem 2.25rem 1.3rem 2.25rem !important;
+    }
+    .sp-acceptupsell:hover{
+        background-color: #99d442;
     }
     .sp-nothanks{
         display:block;
+        font-size: 1rem;
     }
     .spUpsellNotice{
         font-size:16px;
@@ -53,7 +66,7 @@
 
     /*Content*/
     #spUpsellContent h1{
-        font-size:3em;
+        font-size:2.75em;
         padding: 15px 0 20px 0;
     }
 
@@ -80,19 +93,19 @@
 </style>
 ```
 
-#  STEP 3: Include the JavaScript and initialize the upsell plugin 
+#  STEP 3: Include the JavaScript and initialize the upsell plugin
 
 ```
-<script src="https://spiffyup.github.io/snippet-upsell_min.js"></script>
+<script src="https://spiffyup.github.io/spiffy-upsell-latest.min.js"></script>
 <script>
     // jQuery Ready
-    jQuery(document).ready(function(){
+    jQuery(document).load(function(){
 
         // Initialize upsell and set any settings - these show the defaults
         jQuery(document).upsells({
             buttonText: "Yes, Add to Order for {upsell_cost}!", // optional - sets the upsell button text
             noThanksText: "No thanks! Continue without adding to order", // optional - sets the "no thanks" link text
-            noticeText: "<strong>Order Not Yet Complete!</strong> See below to finish your order" // optional - sets the text in the notice at the top of the upsell page
+            noticeText: "<strong>One more step to complete your order!</strong> See below to finish your order..." // optional - sets the text in the notice at the top of the upsell page
         });
 
     });

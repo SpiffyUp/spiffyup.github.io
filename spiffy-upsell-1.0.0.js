@@ -53,20 +53,28 @@
             // hide default upsell
             $('#UP_SELLS').hide();
 
-            // Get actions
-            this.ca_loop = 0;
-            this.ua_loop= 0;
-            upsell.actionUpsell();
-            upsell.actionCheckout();
+            // Get actions - loop until we get it
+            upsell.ua_interval = setInterval(function(){ upsell.actionUpsell() }, 250);
+            upsell.ca_interval = setInterval(function(){ upsell.actionCheckout() }, 250);
 
             // Bind to order form submit
             $( "form" ).on( "submit.sp_upsell", function(e) {
+
+                console.log('Order submitted');
+
+                // make sure we have checkout actions properly set
+                if(upsell.upsellAction == undefined || upsell.checkoutAction == undefined){
+                    console.log('ERROR: Failed to load up sell');
+                    return true;
+                }
 
                 // logic to check if upsell is already added and no validation issues
                 if( $('.productCell a').length < 1 && $("#submitted").val() != 'true'){
 
                     // Stop default form submit
                     e.preventDefault();
+
+                    console.log('Trigger upsell');
 
                     // hide default loader
                     $('#spiffy-loader').hide();
@@ -174,9 +182,11 @@
 
             // loop if we dont get what we need
             console.log(this.upsellAction);
-            if(this.upsellAction == undefined && this.ua_loop < 6){
-                this.ua_loop++; //count so we never are in an endless loop
-                setTimeout(this.actionUpsell(), 250);
+            if(this.upsellAction != undefined){
+
+                // stop loop
+                window.clearInterval(this.ua_interval);
+
             }
 
         },
@@ -195,9 +205,11 @@
 
             // loop if we dont get what we need
             console.log(this.checkoutAction);
-            if(this.checkoutAction == undefined && this.ca_loop < 6){
-                this.ca_loop++; //count so we never are in an endless loop
-                setTimeout(this.actionCheckout(), 250);
+            if(this.checkoutAction != undefined){
+
+                // stop loop
+                window.clearInterval(this.ca_interval);
+
             }
 
         },
