@@ -99,7 +99,7 @@
 <script src="https://spiffyup.github.io/spiffy-upsell-latest.min.js"></script>
 <script>
     // jQuery Ready
-    jQuery(document).load(function(){
+    jQuery(window).load(function(){
 
         // Initialize upsell and set any settings - these show the defaults
         jQuery(document).upsells({
