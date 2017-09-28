@@ -141,7 +141,7 @@ img {
   font-weight: 400; }
 
 .productDescriptionFront {
-  margin-top: 15px; }
+  float: left; }
   .productDescriptionFront:empty {
     display: none; }
 

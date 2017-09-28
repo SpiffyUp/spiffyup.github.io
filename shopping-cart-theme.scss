@@ -201,7 +201,7 @@ img {
 }
 
 .productDescriptionFront {
-    margin-top: 15px;
+    float: left;
 
     &:empty {
         display: none;
