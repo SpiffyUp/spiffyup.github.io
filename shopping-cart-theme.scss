@@ -3,6 +3,10 @@ $border: #dcdcdc;
 
 
 // Make things responsive
+body {
+    overflow-x: hidden;
+}
+
 #wrapper,
 #topNav,
 #nav,
@@ -59,6 +63,42 @@ $border: #dcdcdc;
 .productDescriptionFront {
     width: 100%;
     margin-bottom: 0;
+}
+
+.productImgContainer {
+    margin: 0;
+    width: 100%;
+
+    img {
+        margin: 0 auto;
+        display: block;
+    }
+
+    @media (min-width: 760px) {
+        width: 30%;
+    }
+}
+
+#productDetails {
+    width: 100%;
+    padding: 0;
+    margin-top: 30px;
+
+    @media (min-width: 760px) {
+        margin-top: 0;
+        float: left;
+        width: 70%;
+        padding: 0 0 0 30px;
+        box-sizing: border-box;
+    }
+
+    ul {
+        width: 100%;
+    }
+}
+
+#BREAD_CRUMBS {
+    margin-bottom: 30px;
 }
 
 img {
@@ -168,6 +208,27 @@ img {
     }
 }
 
+#productDescription {
+    h2 {
+        margin-top: 30px;
+        border-bottom: none;
+    font-size: 32px;
+    font-weight: 400;
+    }
+}
+
 #footer {
     border: none;
+}
+
+.cartButton {
+    background: $color;
+    border: none;
+    text-shadow: none;
+    box-shadow: none;
+    padding: 10px 15px;
+
+    &:hover {
+        background: darken($color, 10%);
+    }
 }
