@@ -43,6 +43,17 @@ $border: #dcdcdc;
             display: none;
         }
     }
+
+    a {
+        float: left;
+        width: 70%;
+
+        &:first-child {
+            width: 30%;
+            padding-right: 20px;
+            box-sizing: border-box;
+        }
+    }
 }
 
 .productDescriptionFront {

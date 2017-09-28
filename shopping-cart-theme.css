@@ -30,6 +30,13 @@
     border: none !important; }
     .productGridOneCol img[src^="/cart/pimg"] {
       display: none; }
+  .productGridOneCol a {
+    float: left;
+    width: 70%; }
+    .productGridOneCol a:first-child {
+      width: 30%;
+      padding-right: 20px;
+      box-sizing: border-box; }
 
 .productDescriptionFront {
   width: 100%;
