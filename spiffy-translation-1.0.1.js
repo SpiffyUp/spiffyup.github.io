@@ -57,13 +57,35 @@ function payplan_hook(){
 
 }
 
-function shippingoptions_hook(){
+// SHIPPING OPTIONS
+// Daisy chain for compatibility
+if(typeof shippingoptions_hook == 'function'){
+    var shippingoptions_hook_old = shippingoptions_hook;
+}
+
+shippingoptions_hook = function(){
+
+    // Daisy chain for compatibility
+    if(typeof summary_hook_old == 'function'){
+        shippingoptions_hook_old();
+    }
 
     jQuery('.shipMethodTable th').text(new_text.header_shippingoptions);
 
 }
 
-function summary_hook(){
+// ORDER SUMMARY
+// Daisy chain for compatibility
+if(typeof summary_hook == 'function'){
+    var summary_hook_old = summary_hook;
+}
+
+summary_hook = function(){
+
+    // Daisy chain for compatibility
+    if(typeof summary_hook_old == 'function'){
+        summary_hook_old();
+    }
 
     // Header
     jQuery('.viewCart .summaryTitle').text(new_text.header_summary);
@@ -95,7 +117,18 @@ function summary_hook(){
 
 }
 
-function paypalbutton_hook(){
+// PAYPAL HOOK
+// Daisy chain for compatibility
+if(typeof paypalbutton_hook == 'function'){
+    var paypalbutton_hook_old = paypalbutton_hook;
+}
+
+paypalbutton_hook = function(){
+
+    // Daisy chain for compatibility
+    if(typeof paypalbutton_hook_old == 'function'){
+        paypalbutton_hook_old();
+    }
 
     jQuery('.checkoutLinks .checkoutWithPayPalLink').html(
         jQuery('.checkoutLinks .checkoutWithPayPalLink').html()
