@@ -68,18 +68,18 @@
 
                 if(dropzones[i] != 'ORDER_FORM_SUMMARY'){
 
-                    $('<div class="dropzone_'+i+' dropzone_'+dropzones[i]+'" data-zone="'+i+'" />').insertBefore('#'+dropzones[i]);
+                    $('<div class="dz dropzone__'+i+' dropzone__'+dropzones[i]+'" data-zone="'+i+'" />').insertBefore('#'+dropzones[i]);
 
                 }else{
 
-                    $('<div class="dropzone_'+i+' dropzone_'+dropzones[i]+'" data-zone="'+i+'" />').insertAfter('#'+dropzones[i-1]);
+                    $('<div class="dz dropzone__'+i+' dropzone__'+dropzones[i]+'" data-zone="'+i+'" />').insertAfter('#'+dropzones[i-1]);
 
                 }
 
             }
 
             // Add last dropzone
-            $('<div class="dropzone_'+arrayLength+'" data-zone="'+arrayLength+'" />').insertAfter('.sp-security');
+            $('<div class="dz dropzone__'+arrayLength+'" data-zone="'+arrayLength+'" />').insertAfter('.sp-security');
 
         },
 
