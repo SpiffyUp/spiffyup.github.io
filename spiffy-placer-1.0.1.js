@@ -85,6 +85,8 @@
 
         moveDropzoneElements: function(){
 
+            var placer = this;
+
             $('[data-dropzone]').each(function(){
 
                 var $this = $(this),
@@ -94,13 +96,22 @@
 
             });
 
+            // Now, set styles
+            placer.setDropzoneStyles();
+
         },
 
         setDropzoneStyles: function(){
 
-            $('.dz').css({
-                "margin-bottom":"15px"
-            });
+            $('.dz').each(function(){
+
+                if( $(this).is(":empty") ){
+
+                    $(this).hide();
+
+                }
+
+            }).css("margin-bottom", "15px");
 
             $('.dropzone__3, .dropzone__0').css({
                 "margin-top":"10px"
