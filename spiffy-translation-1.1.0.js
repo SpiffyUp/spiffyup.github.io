@@ -70,7 +70,7 @@ spiffyTranslate = function( options ){
     // return translation settings
     translations = options;
 
-    return;
+    spiffyNoHookTranslations();
 
 }
 
@@ -81,6 +81,13 @@ if(typeof new_text != undefined)
 
 /* START TRANSLATIONS */
 /* * * * * * * * * * * * * * * * * * * * * * * */
+
+function spiffyNoHookTranslations(){
+
+    // Set Spiffy settings (no hooks required)
+    window.button_text = translations.buttons_order;
+
+}
 
 function billing_hook(){
 
@@ -251,6 +258,3 @@ paypalbutton_hook = function(){
 
 
 }
-
-// Set Spiffy settings (no hooks required)
-window.button_text = translations.buttons_order;
