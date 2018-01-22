@@ -84,11 +84,14 @@ if(typeof new_text != 'undefined')
 /* START TRANSLATIONS */
 /* * * * * * * * * * * * * * * * * * * * * * * */
 
+// Set Spiffy settings (no hooks required)
 function spiffyNoHookTranslations(){
 
-    // Set Spiffy settings (no hooks required)
     window.button_text = translations.buttons_order;
-    terms.notice = translations.snippet_terms_notice;
+
+    if(typeof terms != 'undefined'){
+        terms.notice = translations.snippet_terms_notice;
+    }
 
 }
 
