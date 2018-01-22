@@ -1,7 +1,10 @@
-<!-- STEP 1: Set all your translation settings -->
+<!-- STEP 1: Include the translation plugin -->
+<script src="https://spiffyup.github.io/spiffy-translation-latest.min.js"></script>
+
+<!-- STEP 2: Set all your translation settings -->
 <script>
 
-    new_text = {
+    spiffyTranslate({
         fname: 'First Name',
         lname: 'Last Name',
         company: 'Company',
@@ -51,11 +54,10 @@
         footer_security: 'Payment secured by 256-bit encryption',
         footer_copyright: 'Copyright',
         footer_rights: 'All Rights Reserved',
-        footer_terms: 'Terms, Privacy, &amp; Disclaimers'
+        footer_terms: 'Terms, Privacy, &amp; Disclaimers',
 
-    };
+        snippet_terms_notice: 'You must agree to the terms and conditions before placing your order.'
+
+    });
 
 </script>
-
-<!-- STEP 2: Include the translation plugin -->
-<script src="https://spiffyup.github.io/spiffy-translation-latest.min.js"></script>
