@@ -56,7 +56,9 @@ spiffyTranslate = function( options ){
         footer_security: 'Payment secured by 256-bit encryption',
         footer_copyright: 'Copyright',
         footer_rights: 'All Rights Reserved',
-        footer_terms: 'Terms, Privacy, &amp; Disclaimers'
+        footer_terms: 'Terms, Privacy, &amp; Disclaimers',
+
+        snippet_terms_notice: 'You must agree to the terms and conditions before placing your order.'
 
     };
 
@@ -75,7 +77,7 @@ spiffyTranslate = function( options ){
 }
 
 // Adds back compatibility with pre 1.1.0 translations
-if(typeof new_text != undefined)
+if(typeof new_text != 'undefined')
     spiffyTranslate(new_text);
 
 
@@ -86,6 +88,7 @@ function spiffyNoHookTranslations(){
 
     // Set Spiffy settings (no hooks required)
     window.button_text = translations.buttons_order;
+    terms.notice = translations.snippet_terms_notice;
 
 }
 
