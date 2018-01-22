@@ -1,7 +1,10 @@
-<!-- STEP 1: Set all your translation settings -->
+<!-- STEP 1: Include the translation plugin -->
+<script src="https://spiffyup.github.io/spiffy-translation-latest.min.js"></script>
+
+<!-- STEP 2: Set all your translation settings -->
 <script>
 
-    new_text = {
+    spiffyTranslate({
         fname: 'First Name',
         lname: 'Last Name',
         company: 'Company',
@@ -53,9 +56,6 @@
         footer_rights: 'All Rights Reserved',
         footer_terms: 'Terms, Privacy, &amp; Disclaimers'
 
-    };
+    });
 
 </script>
-
-<!-- STEP 2: Include the translation plugin -->
-<script src="https://spiffyup.github.io/spiffy-translation-latest.min.js"></script>
