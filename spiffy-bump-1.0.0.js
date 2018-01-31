@@ -42,15 +42,15 @@ jQuery(document).ready(function($){
             summary_hook_old();
         }
 
-        if(spiffyHasUpsell() && spiffyBumpSettings.upsellRemove != $('#ORDER_FORM_PRODUCT_LIST tr td a:not(.updateCart)').attr('href')){
+        if(spiffyHasUpsell() && spiffyBumpSettings.upsellRemove != $('#ORDER_FORM_PRODUCT_LIST .productCell a').attr('href')){
 
-            spiffyBumpSettings.upsellRemove = $('#ORDER_FORM_PRODUCT_LIST tr td a:not(.updateCart)').attr('href');
+            spiffyBumpSettings.upsellRemove = $('#ORDER_FORM_PRODUCT_LIST .productCell a').attr('href');
             console.log('Bump REMOVE Action: '+spiffyBumpSettings.upsellRemove);
 
         }
 
         if(!spiffyBumpSettings.showSummary)
-            $('#ORDER_FORM_PRODUCT_LIST tr td a:not(.updateCart)').parents('tr').hide();
+            $('#ORDER_FORM_PRODUCT_LIST .productCell a').parents('tr').hide();
 
     }
 
@@ -76,7 +76,7 @@ function spiffyInitializeBumpOffer(){
 
     jQuery('<div class="spiffyBumpContainer" />').insertAfter(spiffyBumpSettings.insertAfter);
 
-    if( spiffyIsUpsellAdded() ){
+    if(jQuery('#ORDER_FORM_PRODUCT_LIST .productCell a').length > 0){
         var status = 'checked';
     }
 
@@ -130,6 +130,6 @@ function spiffyBumpStatus(){
 
 function spiffyIsUpsellAdded(){
 
-    return ( jQuery('#ORDER_FORM_PRODUCT_LIST tr td a:not(.updateCart)').length > 0 ? true : false );
+    return ( jQuery('#ORDER_FORM_PRODUCT_LIST .productCell a').length > 0 ? true : false );
 
 }
