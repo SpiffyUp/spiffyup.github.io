@@ -1,17 +1,20 @@
-<!-- STEP 1: Set the bump offer settings -->
+<!-- STEP 1: Include the JavaScript and initialize the upsell plugin -->
+<script src="https://spiffyup.github.io/spiffy-bump-latest.min.js"></script>
+
+<!-- STEP 2: Set the bump offer settings -->
 <script>
-var spiffyBumpSettings = {
+
+spiffyBump({
 
     title: "YES! I want your XYZ offer! (+$37)",
     description: "This is my order bump description text. You can even add HTML here as long as you don't break the quote marks!",
     insertAfter: ".spiffy-ordersummary",
-    showSummary: false
+    showSummary: false,
+    autoAdd: false
 
-}
+});
+
 </script>
-
-<!-- STEP 2: Include the JavaScript and initialize the upsell plugin -->
-<script src="https://spiffyup.github.io/spiffy-bump-latest.min.js"></script>
 
 <!-- STEP 3: Add/edit the bump styles -->
 <style>
@@ -33,5 +36,9 @@ var spiffyBumpSettings = {
     }
     .bumpDescription{
         font-size: 14px;
+    }
+
+    .viewCart tr td a{
+        font-size: 12px;
     }
 </style>
