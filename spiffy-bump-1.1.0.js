@@ -80,95 +80,98 @@ spiffyBump = function( options ){
 
     });
 
+    /* ORDER BUMP UTILITY FUNCTIONS
+     * * * * * * * * * * * * * * * * * * * *
+    */
+
+    function spiffyHasUpsell(){
+
+        if(jQuery('#upsellContainer').length > 0 || jQuery('.spiffy-ordersummary').length > 0){
+            return true;
+        }
+
+        return false;
+
+    }
+
+    function spiffyInitializeBumpOffer(){
+
+        if(typeof bump.initialized == 'undefined'){
+
+            var status;
+
+            // Handle auto-add upsells
+            // TODO: Add logic in for lock down forms so we don't change the order on failed checkout
+            if( bump.settings.autoAdd && !spiffyIsUpsellAdded() ){
+                spiffyAddBump();
+                var status = 'checked';
+            }
+
+
+            jQuery('<div class="spiffyBumpContainer" />').insertAfter(bump.settings.insertAfter);
+
+            if( spiffyIsUpsellAdded() ){
+                var status = 'checked';
+            }
+
+            var bumpHtml = '<label for="bumpStatus" class="bumpTitle"><input type="checkbox" id="bumpStatus" name="bumpStatus" value="" '+status+' /> ' + bump.settings.title + '</label><div class="bumpDescription">' + bump.settings.description + '</div>'
+
+            jQuery('.spiffyBumpContainer').html(bumpHtml);
+
+            jQuery('#bumpStatus').on('change', function(e){
+
+                 spiffyUpdateBump();
+
+            });
+
+            bump.initialized = true;
+
+        }
+
+    }
+
+    function spiffyUpdateBump(){
+
+        if(spiffyBumpStatus() != spiffyIsUpsellAdded()){
+
+            if(spiffyBumpStatus()){
+                console.log('checked - adding bump - '+bump.settings.upsellAdd);
+                spiffyAddBump()
+            }else{
+                console.log('unchecked - removing bump - '+bump.settings.upsellRemove);
+                spiffyRemoveBump()
+            }
+
+        }
+
+    }
+
+    function spiffyAddBump(){
+
+        eval(bump.settings.upsellAdd);
+
+    }
+
+    function spiffyRemoveBump(){
+
+        eval(bump.settings.upsellRemove);
+
+    }
+
+    function spiffyBumpStatus(){
+
+        return jQuery('#bumpStatus').prop('checked');
+
+    }
+
+    function spiffyIsUpsellAdded(){
+
+        return ( jQuery('#ORDER_FORM_PRODUCT_LIST tr td a:not(.updateCart)').length > 0 ? true : false );
+
+    }
+
 }
 
 // Adds back compatibility for pre 1.1.0 order bump
 if(typeof spiffyBumpSettings != 'undefined')
     spiffyBump(spiffyBumpSettings);
-
-
-function spiffyHasUpsell(){
-
-    if(jQuery('#upsellContainer').length > 0 || jQuery('.spiffy-ordersummary').length > 0){
-        return true;
-    }
-
-    return false;
-
-}
-
-function spiffyInitializeBumpOffer(){
-
-    if(typeof bump.initialized == 'undefined'){
-
-        var status;
-
-        // Handle auto-add upsells
-        // TODO: Add logic in for lock down forms so we don't change the order on failed checkout
-        if( bump.settings.autoAdd && !spiffyIsUpsellAdded() ){
-            spiffyAddBump();
-            var status = 'checked';
-        }
-
-
-        jQuery('<div class="spiffyBumpContainer" />').insertAfter(bump.settings.insertAfter);
-
-        if( spiffyIsUpsellAdded() ){
-            var status = 'checked';
-        }
-
-        var bumpHtml = '<label for="bumpStatus" class="bumpTitle"><input type="checkbox" id="bumpStatus" name="bumpStatus" value="" '+status+' /> ' + bump.settings.title + '</label><div class="bumpDescription">' + bump.settings.description + '</div>'
-
-        jQuery('.spiffyBumpContainer').html(bumpHtml);
-
-        jQuery('#bumpStatus').on('change', function(e){
-
-             spiffyUpdateBump();
-
-        });
-
-        bump.initialized = true;
-
-    }
-
-}
-
-function spiffyUpdateBump(){
-
-    if(spiffyBumpStatus() != spiffyIsUpsellAdded()){
-
-        if(spiffyBumpStatus()){
-            console.log('checked - adding bump - '+bump.settings.upsellAdd);
-            spiffyAddBump()
-        }else{
-            console.log('unchecked - removing bump - '+bump.settings.upsellRemove);
-            spiffyRemoveBump()
-        }
-
-    }
-
-}
-
-function spiffyAddBump(){
-
-    eval(bump.settings.upsellAdd);
-
-}
-
-function spiffyRemoveBump(){
-
-    eval(bump.settings.upsellRemove);
-
-}
-
-function spiffyBumpStatus(){
-
-    return jQuery('#bumpStatus').prop('checked');
-
-}
-
-function spiffyIsUpsellAdded(){
-
-    return ( jQuery('#ORDER_FORM_PRODUCT_LIST tr td a:not(.updateCart)').length > 0 ? true : false );
-
-}
