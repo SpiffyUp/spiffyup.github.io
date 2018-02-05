@@ -49,6 +49,9 @@ spiffyTranslate = function( options ){
         summary_promo_label: 'enter promo code...',
         summary_promo_apply: 'Apply',
 
+        terms_text: 'I agree to the',
+        terms_link: 'terms and conditions',
+
         buttons_paypal: 'Checkout with',
         buttons_order: 'Complete my purchase!',
         buttons_or: 'OR',
@@ -102,6 +105,14 @@ function spiffyNoHookTranslations(){
     }
 
     jQuery(window).load(function() {
+
+            // Update spiffy terms and conditions
+            jQuery('.spiffy-terms').html(
+                jQuery('.spiffy-terms').html()
+                    .replace('I agree to the', translations.terms_text)
+                    .replace('terms and conditions', translations.terms_link)
+            );
+
             // Use Infusionsoft's initialize API to translate error messages
             Infusion.Ecomm.OrderForms.init({
                 "orderform.paymentType.required.error": "You must select a payment type.",
@@ -119,6 +130,7 @@ function spiffyNoHookTranslations(){
             });
 
     });
+
 
 
 }
