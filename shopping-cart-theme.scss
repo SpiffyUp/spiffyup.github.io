@@ -232,3 +232,25 @@ img {
         background: darken($color, 10%);
     }
 }
+
+.viewCart .productRow {
+
+    @media (max-width: 760px) {
+        td {
+            width: auto;
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+
+            &:first-child, &:last-child {
+                padding-left: 10px !important;
+                padding-right: 10px !important;
+            }
+        }
+
+        img {
+            min-width: 50px;
+            max-width: 100%;
+            height: auto;
+        }
+    }
+}
