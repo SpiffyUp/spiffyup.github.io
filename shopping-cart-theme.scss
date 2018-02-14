@@ -254,3 +254,25 @@ img {
         }
     }
 }
+.spiffy-storefront{
+
+    .cartButton{
+        border: 2px #0298d1 solid;
+
+        &.processing{
+            border: 2px #0298d1 solid;
+            background: transparent;
+            color: #0298d1;
+        }
+        &.added{
+            border: 2px #83d010 solid;
+            background: #83d010;
+            color: #ffffff;
+        }
+    }
+
+    a.spiffyCheckout{
+        padding-left:15px;
+    }
+
+}
