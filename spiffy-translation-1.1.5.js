@@ -107,11 +107,15 @@ function spiffyNoHookTranslations(){
     jQuery(window).load(function() {
 
             // Update spiffy terms and conditions
-            jQuery('.spiffy-terms').html(
-                jQuery('.spiffy-terms').html()
-                    .replace('I agree to the', translations.terms_text)
-                    .replace('terms and conditions', translations.terms_link)
-            );
+            if(typeof terms != 'undefined' && terms.enabled == 'true'){
+
+                jQuery('.spiffy-terms').html(
+                    jQuery('.spiffy-terms').html()
+                        .replace('I agree to the', translations.terms_text)
+                        .replace('terms and conditions', translations.terms_link)
+                );
+
+            }
 
 
             // ensure we OVERWRITE infusionsoft's defaults
@@ -133,10 +137,9 @@ function spiffyNoHookTranslations(){
                     "payment.payPal.shipping.address.warning": translations.error_shipping_paypal
                 });
 
-            }, 2000);
+            }, 500);
 
     });
-
 
 
 }
