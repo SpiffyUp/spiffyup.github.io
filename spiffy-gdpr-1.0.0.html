@@ -1,0 +1,29 @@
+<!-- STEP 1: Include the JavaScript and initialize the plugin -->
+<script src="https://spiffyup.github.io/spiffy-gdpr-latest.min.js" charset="utf-8"></script>
+
+<!-- STEP 2: Set what checkboxes you want on your form -->
+<!-- NOT COMPATIBLE WITH SPIFFY'S BUILT IN TERMS CHECKBOX - BE SURE TO DISABLE IT  -->
+<script>
+
+spiffyGDPR([{
+        custom_field: "Contact0_TermsAgree",
+        checkbox_text: "I agree to the <a href='#'>terms and conditions</a>",
+        required: true,
+        required_error: 'You must agree to the terms before continuing',
+        show_always: true
+    },
+    {
+        custom_field: "Contact0_PrivacyAgree",
+        checkbox_text: "I agree to the <a href='#'>privacy policy</a>",
+        required: true,
+        required_error: 'You must agree to the privacy policy before continuing',
+        show_always: true
+    },
+    {
+        custom_field: "Contact0_GDPRMarketingOptIn",
+        checkbox_text: "I want to receive future discounts and free training.",
+        show_always: false
+    }
+]);
+
+</script>
