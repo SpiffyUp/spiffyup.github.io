@@ -85,6 +85,10 @@ spiffyGDPR = function( options ){
                         }
                     }
                 }
+
+                // Sync values!
+                jQuery('.spiffy_gdpr_terms input:visible').trigger('change');
+
             }).trigger(changeString);
 
         };
@@ -185,6 +189,8 @@ spiffyGDPR = function( options ){
     // hide checkbox
     hideGDPRCheckboxes = function (index) {
 
+        // empty custom field for hidden checkboxes
+        jQuery('input[name=' + spiffyGDPR.settings[index].custom_field + ']').val('');
         jQuery('.spiffy_gdpr_terms[data-cb-index='+ index +']').hide();
 
     };
