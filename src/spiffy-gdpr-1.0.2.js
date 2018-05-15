@@ -14,6 +14,15 @@ spiffyGDPR = function( options ){
         show_always: false // (optional)
     };
 
+    // String Optimizations
+    var countryId = '#country',
+        checkoutLinksId = '#CHECKOUT_LINKS',
+
+        // Events
+        changeString = 'change',
+        clickString = 'click',
+        onclickString = 'onclick';
+
     // Make sure we're an array
     if (!options instanceof Array) {
         console.log('Could not start GDPR checkbox plugin - settings not in an array');
@@ -56,7 +65,7 @@ spiffyGDPR = function( options ){
 
 
 
-            jQuery('#country').on('change', function (e) {
+            jQuery(countryId).on(changeString, function (e) {
 
                 for (var i = 0; i < spiffyGDPR.settings.length; i++) {
 
@@ -76,7 +85,7 @@ spiffyGDPR = function( options ){
                         }
                     }
                 }
-            }).trigger('change');
+            }).trigger(changeString);
 
         };
 
@@ -91,13 +100,13 @@ spiffyGDPR = function( options ){
                 'padding':'0 0 30px 0',
                 'text-align':'center'
             })
-            .insertBefore('#CHECKOUT_LINKS');
+            .insertBefore(checkoutLinksId);
 
         // Add custom field
         jQuery('<input type="hidden" value="false" name="' + spiffyGDPR.settings[index].custom_field + '" />').prependTo('#orderForm');
 
         // Bind actions
-        jQuery('[data-cb-index='+ index +'] input').on('change', function () {
+        jQuery('[data-cb-index='+ index +'] input').on(changeString, function () {
 
             var checked = jQuery(this).is(":checked");
             var new_val = ( checked ? checked +' '+ getTimeStamp() : checked );
@@ -109,9 +118,9 @@ spiffyGDPR = function( options ){
     };
 
     // Bind required validations
-    injectSpiffy("#CHECKOUT_LINKS", function() {
+    injectSpiffy(checkoutLinksId, function() {
 
-        if (jQuery("#CHECKOUT_LINKS a.complete-purchase").length > 0 && jQuery("#CHECKOUT_LINKS .gdpr_validations").length < 1) {
+        if (jQuery(checkoutLinksId+" a.complete-purchase").length > 0 && jQuery(checkoutLinksId+" .gdpr_validations").length < 1) {
             bindValidations();
         }
 
@@ -119,7 +128,6 @@ spiffyGDPR = function( options ){
 
 
     // UTILITY FUNCTIONS
-    //
     bindValidations = function () {
 
         jQuery(".checkoutLinks > a.complete-purchase").each(function() {
@@ -134,12 +142,12 @@ spiffyGDPR = function( options ){
 
             } else {
 
-                original = jQuery(this).attr('onclick');
-                jQuery(this).attr('onclick', "").addClass('gdpr_validations');
+                original = jQuery(this).attr(onclickString);
+                jQuery(this).attr(onclickString, "").addClass('gdpr_validations');
 
             }
 
-            jQuery(this).off('click').on('click', function(event) {
+            jQuery(this).off(clickString).on(clickString, function(event) {
 
                 event.preventDefault();
 
@@ -161,8 +169,7 @@ spiffyGDPR = function( options ){
 
         for (var i = 0; i < spiffyGDPR.settings.length; i++) {
 
-            if (spiffyGDPR.settings[i].required &&
-                !jQuery('.spiffy_gdpr_terms[data-cb-index='+ i +'] input').is(":checked") ) {
+            if (isRequired(i)  && !jQuery('.spiffy_gdpr_terms[data-cb-index='+ i +'] input').is(":checked") ) {
 
                 alert(spiffyGDPR.settings[i].required_error);
                 return false;
@@ -186,6 +193,35 @@ spiffyGDPR = function( options ){
     showGDPRCheckboxes = function (index) {
 
         jQuery('.spiffy_gdpr_terms[data-cb-index='+ index +']').show();
+
+    };
+
+    isRequired = function (index) {
+        var settings = spiffyGDPR.settings[index],
+            country = jQuery(countryId).val();
+
+        // Is this checkbox required?
+        if (settings.required === true) {
+
+            // This an EU-only required checkbox - return required
+            if (settings.show_always === false) {
+
+                // If we only show for EU, only require for EU
+                if (isEuropeanUnion(country)) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            }
+
+            // basic required checkbox
+            return true;
+
+        }
+
+        // basic not required
+        return false;
 
     };
 
