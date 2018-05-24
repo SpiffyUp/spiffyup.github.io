@@ -67,29 +67,15 @@ spiffyGDPR = function( options ){
 
             jQuery(countryId).on(changeString, function (e) {
 
-                for (var i = 0; i < spiffyGDPR.settings.length; i++) {
+                checkSelectedCountry();
 
-                    // Hide/show opt-in depending on selected country
-                    if (!spiffyGDPR.settings[i].show_always) {
+                // Sync checkbox values!
+                jQuery('.spiffy_gdpr_terms input:visible').trigger(changeString);
 
-                        var $this = jQuery(this);
+            });
 
-                        if (isEuropeanUnion($this.val())) {
-
-                            showGDPRCheckboxes(i);
-
-                        } else {
-
-                            hideGDPRCheckboxes(i);
-
-                        }
-                    }
-                }
-
-                // Sync values!
-                jQuery('.spiffy_gdpr_terms input:visible').trigger('change');
-
-            }).trigger(changeString);
+            // Also, immediately update the checkboxes with the current value
+            checkSelectedCountry();
 
         };
 
@@ -164,6 +150,29 @@ spiffyGDPR = function( options ){
             });
 
         });
+
+    };
+
+    checkSelectedCountry = function () {
+
+        for (var i = 0; i < spiffyGDPR.settings.length; i++) {
+
+            // Hide/show opt-in depending on selected country
+            if (!spiffyGDPR.settings[i].show_always) {
+
+                var $this = jQuery(countryId);
+
+                if (isEuropeanUnion($this.val())) {
+
+                    showGDPRCheckboxes(i);
+
+                } else {
+
+                    hideGDPRCheckboxes(i);
+
+                }
+            }
+        }
 
     };
 
