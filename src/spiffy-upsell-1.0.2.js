@@ -171,7 +171,7 @@
             // Process upsell
             eval(upsellAction);
 
-            // Queue order
+            // Queue orders
             var placeOrder = setInterval(function () {
                 console.log('Trying to place order');
 
