@@ -167,15 +167,22 @@
 
             // wait for all AJAX to be done before processing order (ensure upsell added)
             console.log('Waiting for order form reload');
-            jQuery(document).ajaxStop(function(){
-                if(upsell.allowProcessOrder){
-                    upsell.allowProcessOrder = 0; // set var to avoid weird loops
-                    upsell.spProcessOrder();
-                }
-            });
 
+            // Process upsell
             eval(upsellAction);
 
+            // Queue order
+            var placeOrder = setInterval(function () {
+                console.log('Trying to place order');
+
+                if(upsell.allowProcessOrder){
+                    if (jQuery("img[src*='spinner']").length < 1) {
+                        upsell.allowProcessOrder = 0; // set var to avoid weird loops
+                        upsell.spProcessOrder();
+                        removeInterval(placeOrder)
+                    }
+                }
+            }, 300)
 
         },
 
