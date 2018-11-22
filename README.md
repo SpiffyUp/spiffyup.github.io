@@ -15,3 +15,5 @@ This is a collection of more advanced snippets that have been made into official
 
 [Spiffy Placer](https://github.com/SpiffyUp/spiffyup.github.io/blob/master/spiffy-placer.js) -
 Used internally for custom field placement throughout an order form and can be found on the [advanced snippets](https://app.gospiffy.com/snippets/advanced) page
+
+[UTM Utility](https://github.com/SpiffyUp/spiffyup.github.io/blob/master/spiffy-utm-utility-latest.js) - Used to pass UTM url variables to all links on a page. Requires jQuery
