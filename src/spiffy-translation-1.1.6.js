@@ -195,7 +195,7 @@ billing_hook = function(){
            .replace('All Rights Reserved', translations.footer_rights)
        );
 
-    jQuery('.spiffy-footerterms').text(translations.footer_terms);
+    jQuery('.spiffy-footerterms').html(translations.footer_terms);
 
 }
 
