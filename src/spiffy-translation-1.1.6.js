@@ -55,7 +55,7 @@ spiffyTranslate = function( options ){
         terms_link: 'terms and conditions',
 
         buttons_paypal: 'Checkout with',
-        buttons_order: 'Complete my purchase!',
+        buttons_order: window.button_text || 'Complete my purchase!',
         buttons_or: 'OR',
 
         footer_security: 'All payments are secured by 256-bit encryption',
